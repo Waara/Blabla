@@ -4,6 +4,8 @@
 <link rel="import" href="blabla-toolbar.html">
 <link rel="import" href="blabla-drawer.html">
 <link rel="import" href="blabla-button.html">
+<link rel="import" href="blabla-layout-header.html">
+<link rel="import" href="blabla-dropdown.html">
 <link rel="import" href="shared-styles.html">
 
 <link rel="import" href="../bower_components/app-route/app-route.html">
@@ -28,21 +30,49 @@
 		</style>
 		<app-location route="{{route}}"></app-location>
 		<app-route route="{{route}}" pattern="[[rootPattern]]:page" data="{{routeData}}" tail="{{subroute}}"></app-route>
-
-		<blabla-toolbar>
-			<blabla-button>
-				<img icon src="/images/manifest/icon-64x64.png" />
-			</blabla-button>
-			<div main-title>Blabla</div>
-			<div class="divider"></div>
-		</blabla-toolbar>
-		<blabla-drawer>
-			<iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-				<a name="view1" href="view1">View One</a>
-				<a name="view2" href="view2">View Two</a>
-				<a name="view3" href="view3">View Three</a>
-			</iron-selector>
-		</blabla-drawer>
+        <div class="row">
+            <div class="column">
+                <blabla-layout-header>
+                    <blabla-toolbar>
+                        <blabla-button>
+                            <img icon src="/images/manifest/icon-64x64.png" />
+                        </blabla-button>
+                        <div main-title>Blabla</div>
+                        <div class="divider"></div>
+                        <blabla-button>
+                            <span class="sr-only">Account</span>
+                            <i class="fa fa-caret-down" aria-hidden="true"></i>
+                        </blabla-button>
+                        <blabla-dropdown>
+                            <blabla-list>
+                                <blabla-list-item>Account settings</blabla-list-item>
+                                <blabla-list-item>Log out</blabla-list-item>
+                            </blabla-list>
+                        </blabla-dropdown>
+                    </blabla-toolbar>
+                </blabla-layout-header>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <blabla-layout-drawer>
+                    <blabla-button>Create new note</blabla-button>
+                    <blabla-notes-list>
+                        <blabla-notes-list-note></blabla-notes-list-note>
+                        <blabla-notes-list-note></blabla-notes-list-note>
+                        <blabla-notes-list-note></blabla-notes-list-note>
+                        <blabla-notes-list-note></blabla-notes-list-note>
+                    </blabla-notes-list>
+                </blabla-layout-drawer>
+            </div>
+            <div class="column">
+                <blabla-layout-module module="notes">
+                    <blabla-notes-note editable>
+                        
+                    </blabla-notes-note>
+                </blabla-layout-module>
+            </div>
+        </div>
 		<iron-pages selected="[[page]]" attr-for-selected="name" fallback-selection="view404" role="main">
 			<blabla-view-account-settings name="view-account-settings"></blabla-view-account-settings>
 			<blabla-view-account name="view-account"></blabla-view-account>
