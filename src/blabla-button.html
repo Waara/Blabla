@@ -10,6 +10,14 @@
 				padding: 8px;
 				line-height: 32px;
 				text-align: center;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				-webkit-user-select: none;
+				user-select: none;
+				cursor: pointer;
+				background: transparent;
+				-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+				-webkit-tap-highlight-color: transparent;
 			}
 			:host ::slotted([icon]) {
 				height: 24px;
@@ -30,6 +38,20 @@
 		class BlablaButton extends Polymer.Element {
 			static get is() {
 				return 'blabla-button';
+			}
+			connectedCallback() {
+				super.connectedCallback();
+				this._ensureAttribute('tabindex', 0);
+				this._ensureAttribute('role', 'button');
+				this.addEventListener('keydown', function(e) {
+					if (e.keyCode == 13 || e.keyCode == 32) {
+						e.preventDefault();
+						this.click();
+					}
+				});
+			}
+			detachedCallback() {
+
 			}
 		}
 
