@@ -19,10 +19,11 @@
 <link rel="lazy-import" href="blabla-view-404.html">
 
 <dom-module id="blabla-app">
-	<template>
+    <template>
 		<style include="shared-styles">
 			:host {
 				display: block;
+				background: #fff;
 			}
 		</style>
 		<app-location route="{{route}}"></app-location>
@@ -53,72 +54,72 @@
 		</iron-pages>
 	</template>
 
-	<script>
-		/**
-		 * `blabla-app`
-		 * The app container of Blabla App
-		 *
-		 * @customElement
-		 * @polymer
-		 */
-		class BlablaApp extends Polymer.Element {
-			static get is() {
-				return 'blabla-app';
-			}
-			static get properties() {
-				return {
-					page: {
-						type: String,
-						reflectToAttribute: true,
-						observer: '_pageChanged',
-					},
-					rootPattern: String,
-					routeData: Object,
-					subroute: String,
-				};
-			}
+    <script>
+        /**
+         * `blabla-app`
+         * The app container of Blabla App
+         *
+         * @customElement
+         * @polymer
+         */
+        class BlablaApp extends Polymer.Element {
+            static get is() {
+                return 'blabla-app';
+            }
+            static get properties() {
+                return {
+                    page: {
+                        type: String,
+                        reflectToAttribute: true,
+                        observer: '_pageChanged',
+                    },
+                    rootPattern: String,
+                    routeData: Object,
+                    subroute: String,
+                };
+            }
 
-			static get observers() {
-				return [
-					'_routePageChanged(routeData.page)',
-				];
-			}
+            static get observers() {
+                return [
+                    '_routePageChanged(routeData.page)',
+                ];
+            }
 
-			constructor() {
-				super();
+            constructor() {
+                super();
 
-				// Get root pattern for app-route, for more info about `rootPath` see:
-				// https://www.polymer-project.org/2.0/docs/upgrade#urls-in-templates
-				this.rootPattern = (new URL(this.rootPath)).pathname;
-			}
+                // Get root pattern for app-route, for more info about `rootPath` see:
+                // https://www.polymer-project.org/2.0/docs/upgrade#urls-in-templates
+                this.rootPattern = (new URL(this.rootPath)).pathname;
+            }
 
-			_routePageChanged(page) {
-				// Polymer 2.0 will call with `undefined` on initialization.
-				// Ignore until we are properly called with a string.
-				if (page === undefined) {
-					return;
-				}
+            _routePageChanged(page) {
+                // Polymer 2.0 will call with `undefined` on initialization.
+                // Ignore until we are properly called with a string.
+                if (page === undefined) {
+                    return;
+                }
 
-				// If no page was found in the route data, page will be an empty string.
-				// Deault to 'home' in that case.
-				this.page = page || 'home';
-			}
+                // If no page was found in the route data, page will be an empty string.
+                // Deault to 'home' in that case.
+                this.page = page || 'home';
+            }
 
-			_pageChanged(page) {
-				// Load page import on demand. Show 404 page if fails
-				var resolvedPageUrl = this.resolveUrl('blabla-view-' + page + '.html');
-				Polymer.importHref(
-					resolvedPageUrl,
-					null,
-					this._showPage404.bind(this),
-					true);
-			}
+            _pageChanged(page) {
+                // Load page import on demand. Show 404 page if fails
+                var resolvedPageUrl = this.resolveUrl('blabla-view-' + page + '.html');
+                Polymer.importHref(
+                    resolvedPageUrl,
+                    null,
+                    this._showPage404.bind(this),
+                    true);
+            }
 
-			_showPage404() {
-				this.page = '404';
-			}
-		}
+            _showPage404() {
+                this.page = '404';
+            }
+        }
 
-		window.customElements.define(BlablaApp.is, BlablaApp);
-	</script>
+        window.customElements.define(BlablaApp.is, BlablaApp);
+    </script>
 </dom-module>
