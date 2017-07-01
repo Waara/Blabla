@@ -2,7 +2,7 @@
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="blabla-button">
-	<template>
+    <template>
 		<style include="shared-styles">
 			:host {
 				height: 40px;
@@ -27,34 +27,34 @@
 		<slot></slot>
 	</template>
 
-	<script>
-		/**
-		 * `blabla-button`
-		 * The single note view of Blabla App
-		 *
-		 * @customElement
-		 * @polymer
-		 */
-		class BlablaButton extends Polymer.Element {
-			static get is() {
-				return 'blabla-button';
-			}
-			connectedCallback() {
-				super.connectedCallback();
-				this._ensureAttribute('tabindex', 0);
-				this._ensureAttribute('role', 'button');
-				this.addEventListener('keydown', function(e) {
-					if (e.keyCode == 13 || e.keyCode == 32) {
-						e.preventDefault();
-						this.click();
-					}
-				});
-			}
-			detachedCallback() {
+    <script>
+        /**
+         * `blabla-button`
+         * The single note view of Blabla App
+         *
+         * @customElement
+         * @polymer
+         */
+        class BlablaButton extends Polymer.Element {
+            static get is() {
+                return 'blabla-button';
+            }
+            connectedCallback() {
+                super.connectedCallback();
+                this._ensureAttribute('tabindex', 0);
+                this._ensureAttribute('role', 'button');
+                this.addEventListener('keyup', function(e) {
+                    if (e.keyCode == 13 || e.keyCode == 32) {
+                        e.preventDefault();
+                        this.click();
+                    }
+                });
+            }
+            detachedCallback() {
 
-			}
-		}
+            }
+        }
 
-		window.customElements.define(BlablaButton.is, BlablaButton);
-	</script>
+        window.customElements.define(BlablaButton.is, BlablaButton);
+    </script>
 </dom-module>
