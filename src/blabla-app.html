@@ -28,7 +28,8 @@
 		<style include="shared-styles">
 			:host {
 				display: block;
-				background: #fff;
+				background: #f5f5f5;
+                min-height: 100vh;
 			}
 		</style>
 		<app-location route="{{route}}"></app-location>
@@ -42,13 +43,18 @@
                         </blabla-button>
                         <div main-title>Blabla</div>
                         <div class="divider"></div>
-                        <blabla-button>
-                            <span class="sr-only">Account</span>
-                            <i class="fa fa-caret-down" aria-hidden="true"></i>
-                        </blabla-button>
                         <blabla-dropdown>
+<<<<<<< HEAD
                             <blabla-list>
                                 <blabla-list-item >Account settings</blabla-list-item>
+=======
+                            <blabla-button slot="toggle">
+                                <span class="sr-only">Account</span>
+                                <i class="fa fa-caret-down" aria-hidden="true"></i>
+                            </blabla-button>
+                            <blabla-list slot="dropdown">
+                                <blabla-list-item>Account settings</blabla-list-item>
+>>>>>>> 765611ad9dcb37b45c0b1bb55c92aa58eb7a74dc
                                 <blabla-list-item>Log out</blabla-list-item>
                             </blabla-list>
                         </blabla-dropdown>
@@ -61,9 +67,12 @@
                 <blabla-layout-drawer>
                     <blabla-button>Create new note</blabla-button>
                     <blabla-notes-list>
+<<<<<<< HEAD
                         <blabla-notes-list-note heading="jekke" lead="Lorem ipsum"></blabla-notes-list-note>
                         <blabla-notes-list-note></blabla-notes-list-note>
                         <blabla-notes-list-note></blabla-notes-list-note>
+=======
+>>>>>>> 765611ad9dcb37b45c0b1bb55c92aa58eb7a74dc
                         <blabla-notes-list-note></blabla-notes-list-note>
                     </blabla-notes-list>
                 </blabla-layout-drawer>
