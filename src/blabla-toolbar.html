@@ -2,7 +2,7 @@
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="blabla-toolbar">
-	<template>
+    <template>
 		<style include="shared-styles">
 			:host {
 				display: flex;
@@ -15,24 +15,27 @@
 				font-size: 24px;
 				font-weight: bold;
 			}
+			:host ::slotted(.divider) {
+				flex: 1;
+			}
 		</style>
 		<slot></slot>
 	</template>
 
-	<script>
-		/**
-		 * `blabla-toolbar`
-		 * The single note view of Blabla App
-		 *
-		 * @customElement
-		 * @polymer
-		 */
-		class BlablaToolbar extends Polymer.Element {
-			static get is() {
-				return 'blabla-toolbar';
-			}
-		}
+    <script>
+        /**
+         * `blabla-toolbar`
+         * The single note view of Blabla App
+         *
+         * @customElement
+         * @polymer
+         */
+        class BlablaToolbar extends Polymer.Element {
+            static get is() {
+                return 'blabla-toolbar';
+            }
+        }
 
-		window.customElements.define(BlablaToolbar.is, BlablaToolbar);
-	</script>
+        window.customElements.define(BlablaToolbar.is, BlablaToolbar);
+    </script>
 </dom-module>
