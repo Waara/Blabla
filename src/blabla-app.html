@@ -1,0 +1,124 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+
+
+<link rel="import" href="blabla-toolbar.html">
+<link rel="import" href="blabla-drawer.html">
+<link rel="import" href="blabla-button.html">
+<link rel="import" href="shared-styles.html">
+
+<link rel="import" href="../bower_components/app-route/app-route.html">
+<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../bower_components/iron-selector/iron-selector.html">
+
+<link rel="lazy-import" href="blabla-view-account-settings.html">
+<link rel="lazy-import" href="blabla-view-account.html">
+<link rel="lazy-import" href="blabla-view-home.html">
+<link rel="lazy-import" href="blabla-view-note.html">
+<link rel="lazy-import" href="blabla-view-signin.html">
+<link rel="lazy-import" href="blabla-view-signup.html">
+<link rel="lazy-import" href="blabla-view-404.html">
+
+<dom-module id="blabla-app">
+	<template>
+		<style include="shared-styles">
+			:host {
+				display: block;
+			}
+		</style>
+		<app-location route="{{route}}"></app-location>
+		<app-route route="{{route}}" pattern="[[rootPattern]]:page" data="{{routeData}}" tail="{{subroute}}"></app-route>
+
+		<blabla-toolbar>
+			<blabla-button>
+				<img icon src="/images/manifest/icon-64x64.png" />
+			</blabla-button>
+			<div main-title>Blabla</div>
+			<div class="divider"></div>
+		</blabla-toolbar>
+		<blabla-drawer>
+			<iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
+				<a name="view1" href="view1">View One</a>
+				<a name="view2" href="view2">View Two</a>
+				<a name="view3" href="view3">View Three</a>
+			</iron-selector>
+		</blabla-drawer>
+		<iron-pages selected="[[page]]" attr-for-selected="name" fallback-selection="view404" role="main">
+			<blabla-view-account-settings name="view-account-settings"></blabla-view-account-settings>
+			<blabla-view-account name="view-account"></blabla-view-account>
+			<blabla-view-home name="view-home"></blabla-view-home>
+			<blabla-view-note name="view-note"></blabla-view-note>
+			<blabla-view-signin name="view-signin"></blabla-view-signin>
+			<blabla-view-signup name="view-signup"></blabla-view-signup>
+			<blabla-view-404 name="view-404"></blabla-view-404>
+		</iron-pages>
+	</template>
+
+	<script>
+		/**
+		 * `blabla-app`
+		 * The app container of Blabla App
+		 *
+		 * @customElement
+		 * @polymer
+		 */
+		class BlablaApp extends Polymer.Element {
+			static get is() {
+				return 'blabla-app';
+			}
+			static get properties() {
+				return {
+					page: {
+						type: String,
+						reflectToAttribute: true,
+						observer: '_pageChanged',
+					},
+					rootPattern: String,
+					routeData: Object,
+					subroute: String,
+				};
+			}
+
+			static get observers() {
+				return [
+					'_routePageChanged(routeData.page)',
+				];
+			}
+
+			constructor() {
+				super();
+
+				// Get root pattern for app-route, for more info about `rootPath` see:
+				// https://www.polymer-project.org/2.0/docs/upgrade#urls-in-templates
+				this.rootPattern = (new URL(this.rootPath)).pathname;
+			}
+
+			_routePageChanged(page) {
+				// Polymer 2.0 will call with `undefined` on initialization.
+				// Ignore until we are properly called with a string.
+				if (page === undefined) {
+					return;
+				}
+
+				// If no page was found in the route data, page will be an empty string.
+				// Deault to 'home' in that case.
+				this.page = page || 'home';
+			}
+
+			_pageChanged(page) {
+				// Load page import on demand. Show 404 page if fails
+				var resolvedPageUrl = this.resolveUrl('blabla-view-' + page + '.html');
+				Polymer.importHref(
+					resolvedPageUrl,
+					null,
+					this._showPage404.bind(this),
+					true);
+			}
+
+			_showPage404() {
+				this.page = '404';
+			}
+		}
+
+		window.customElements.define(BlablaApp.is, BlablaApp);
+	</script>
+</dom-module>

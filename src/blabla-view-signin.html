@@ -1,0 +1,38 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="blabla-view-signin">
+	<template>
+		<style include="shared-styles">
+			:host {
+				display: block;
+			}
+		</style>
+		<h2>Hello [[prop1]]!</h2>
+	</template>
+
+	<script>
+		/**
+		 * `blabla-view-signin`
+		 * The sign in view of Blabla App
+		 *
+		 * @customElement
+		 * @polymer
+		 */
+		class BlablaViewSignin extends Polymer.Element {
+			static get is() {
+				return 'blabla-view-signin';
+			}
+			static get properties() {
+				return {
+					prop1: {
+						type: String,
+						value: 'blabla-view-signin'
+					}
+				};
+			}
+		}
+
+		window.customElements.define(BlablaViewSignin.is, BlablaViewSignin);
+	</script>
+</dom-module>

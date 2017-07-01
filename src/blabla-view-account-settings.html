@@ -1,0 +1,38 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="blabla-view-account-settings">
+	<template>
+		<style include="shared-styles">
+			:host {
+				display: block;
+			}
+		</style>
+		<h2>Hello [[prop1]]!</h2>
+	</template>
+
+	<script>
+		/**
+		 * `blabla-view-account-settings`
+		 * The account settings view of Blabla App
+		 *
+		 * @customElement
+		 * @polymer
+		 */
+		class BlablaViewAccountSettings extends Polymer.Element {
+			static get is() {
+				return 'blabla-view-account-settings';
+			}
+			static get properties() {
+				return {
+					prop1: {
+						type: String,
+						value: 'blabla-view-account-settings'
+					}
+				};
+			}
+		}
+
+		window.customElements.define(BlablaViewAccountSettings.is, BlablaViewAccountSettings);
+	</script>
+</dom-module>

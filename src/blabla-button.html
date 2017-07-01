@@ -1,0 +1,38 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="blabla-button">
+	<template>
+		<style include="shared-styles">
+			:host {
+				height: 40px;
+				width: 40px;
+				padding: 8px;
+				line-height: 32px;
+				text-align: center;
+			}
+			:host ::slotted([icon]) {
+				height: 24px;
+				width: 24px;
+			}
+		</style>
+		<slot></slot>
+	</template>
+
+	<script>
+		/**
+		 * `blabla-button`
+		 * The single note view of Blabla App
+		 *
+		 * @customElement
+		 * @polymer
+		 */
+		class BlablaButton extends Polymer.Element {
+			static get is() {
+				return 'blabla-button';
+			}
+		}
+
+		window.customElements.define(BlablaButton.is, BlablaButton);
+	</script>
+</dom-module>
