@@ -6,9 +6,8 @@
 		<style include="shared-styles">
 			:host {
 				height: 40px;
-				width: 40px;
 				padding: 8px;
-				line-height: 32px;
+				line-height: 24px;
 				text-align: center;
 				-moz-user-select: none;
 				-ms-user-select: none;
@@ -18,10 +17,16 @@
 				background: transparent;
 				-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 				-webkit-tap-highlight-color: transparent;
+				display: inline-block;
+				white-space: nowrap;
 			}
 			:host ::slotted([icon]) {
+				display: inline-block;
+			}
+			:host ::slotted(img) {
+				display: inline-block;
+				width: auto;
 				height: 24px;
-				width: 24px;
 			}
 		</style>
 		<slot></slot>

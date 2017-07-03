@@ -1,0 +1,31 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="blabla-icon">
+	<link rel="import" type="css" href="../bower_components/fontawesome/css/font-awesome.min.css">
+	<template>
+		<style include="shared-styles"></style>
+		<i class$="[[icon]]" aria-hidden="true"></i>
+	</template>
+
+	<script>
+		/**
+		 * `blabla-icon`
+		 *
+		 * @customElement
+		 * @polymer
+		 */
+		class BlablaIcon extends Polymer.Element {
+			static get is() {
+				return 'blabla-icon';
+			}
+			static get properties() {
+				return {
+					icon: String
+				};
+			}
+		}
+
+		window.customElements.define(BlablaIcon.is, BlablaIcon);
+	</script>
+</dom-module>

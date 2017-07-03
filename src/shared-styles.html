@@ -12,15 +12,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <!-- shared styles for all views -->
 <dom-module id="shared-styles">
-  <template>
-    <style>
-	  :host {
-		  box-sizing: border-box;
-	  }
-	  :host ::slotted(*),
-	  :host * {
-		  box-sizing: inherit;
-	  }
-    </style>
-  </template>
+	<template>
+		<style>
+			:host {
+				box-sizing: border-box;
+			}
+			 :host ::slotted(*),
+			 :host * {
+				box-sizing: inherit;
+			}
+			.sr-only {
+				position: absolute;
+				width: 1px;
+				height: 1px;
+				padding: 0;
+				margin: -1px;
+				overflow: hidden;
+				clip: rect(0, 0, 0, 0);
+				border: 0;
+			}
+		</style>
+	</template>
 </dom-module>

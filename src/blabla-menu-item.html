@@ -1,0 +1,39 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="blabla-menu-item">
+	<template>
+		<style include="shared-styles">
+			:host {
+				padding: 8px 16px;
+				display: block;
+				cursor: pointer;
+			}
+			:host(:hover) {
+				background: #eee;
+			}
+		</style>
+		<slot></slot>
+	</template>
+
+	<script>
+		/**
+		 * `blabla-menu-item`
+		 * The single note view of Blabla App
+		 *
+		 * @customElement
+		 * @polymer
+		 */
+		class BlablaMenuItem extends Polymer.Element {
+			static get is() {
+				return 'blabla-menu-item';
+			}
+			connectedCallback() {
+				super.connectedCallback();
+				this._ensureAttribute('role', 'menuitem');
+			}
+		}
+
+		window.customElements.define(BlablaMenuItem.is, BlablaMenuItem);
+	</script>
+</dom-module>

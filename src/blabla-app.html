@@ -6,6 +6,8 @@
 <link rel="import" href="blabla-button.html">
 <link rel="import" href="blabla-layout-header.html">
 <link rel="import" href="blabla-dropdown.html">
+<link rel="import" href="blabla-menu.html">
+<link rel="import" href="blabla-icon.html">
 <link rel="import" href="blabla-notes-list.html">
 <link rel="import" href="blabla-notes-list-note.html">
 
@@ -24,59 +26,72 @@
 <link rel="lazy-import" href="blabla-view-404.html">
 
 <dom-module id="blabla-app">
-    <template>
+	<template>
 		<style include="shared-styles">
 			:host {
 				display: block;
 				background: #f5f5f5;
-                min-height: 100vh;
+				min-height: 100vh;
+			}
+			:host .search-container {
+				padding: 0 16px;
+			}
+			:host .form-control {
+				border: 0;
+				padding: 8px;
 			}
 		</style>
 		<app-location route="{{route}}"></app-location>
 		<app-route route="{{route}}" pattern="[[rootPattern]]:page" data="{{routeData}}" tail="{{subroute}}"></app-route>
-        <div class="row">
-            <div class="column">
-                <blabla-layout-header>
-                    <blabla-toolbar>
-                        <blabla-button>
-                            <img icon src="/images/manifest/icon-64x64.png" />
-                        </blabla-button>
-                        <div main-title>Blabla</div>
-                        <div class="divider"></div>
-                        <blabla-dropdown>
-                            <blabla-button slot="toggle">
-                                <span class="sr-only">Account</span>
-                                <i class="fa fa-caret-down" aria-hidden="true"></i>
-                            </blabla-button>
-                            <blabla-list slot="dropdown">
-                                <blabla-list-item>Account settings</blabla-list-item>
-                                <blabla-list-item>Log out</blabla-list-item>
-                            </blabla-list>
-                        </blabla-dropdown>
-                    </blabla-toolbar>
-                </blabla-layout-header>
-            </div>
-        </div>
-        <div class="row">
-            <div class="column">
-                <blabla-layout-drawer>
-                    <blabla-button>Create new note</blabla-button>
-                    <blabla-notes-list>
-                        <blabla-notes-list-note heading="jekke" lead="Lorem ipsum"></blabla-notes-list-note>
-                        <blabla-notes-list-note></blabla-notes-list-note>
-                        <blabla-notes-list-note></blabla-notes-list-note>
-                        <blabla-notes-list-note></blabla-notes-list-note>
-                    </blabla-notes-list>
-                </blabla-layout-drawer>
-            </div>
-            <div class="column">
-                <blabla-layout-module module="notes">
-                    <blabla-notes-note editable>
-                        
-                    </blabla-notes-note>
-                </blabla-layout-module>
-            </div>
-        </div>
+		<div class="row">
+			<div class="column">
+				<blabla-layout-header>
+					<blabla-toolbar>
+						<blabla-button>
+							<img icon src="/images/manifest/icon-64x64.png" />
+						</blabla-button>
+						<div main-title>Blabla</div>
+						<div class="search-container">
+							<form>
+								<label class="sr-only">Search for notes</label>
+								<input type="text" name="noteSearch" id="noteSearch" class="form-control" placeholder="Search for notes"/>
+							</form>
+						</div>
+						<div class="divider"></div>
+						<blabla-dropdown>
+							<blabla-button slot="toggle" title="Account">
+								<blabla-icon icon="fa fa-user" aria-hidden="true"></blabla-icon>
+								<blabla-icon icon="fa fa-caret-down" aria-hidden="true"></blabla-icon>
+							</blabla-button>
+							<blabla-menu slot="dropdown">
+								<blabla-menu-item>Account settings</blabla-menu-item>
+								<blabla-menu-item>Log out</blabla-menu-item>
+							</blabla-menu>
+						</blabla-dropdown>
+					</blabla-toolbar>
+				</blabla-layout-header>
+			</div>
+		</div>
+		<div class="row">
+			<div class="column">
+				<blabla-layout-drawer>
+					<blabla-button>Create new note</blabla-button>
+					<blabla-notes-list>
+						<blabla-notes-list-note heading="jekke" lead="Lorem ipsum"></blabla-notes-list-note>
+						<blabla-notes-list-note></blabla-notes-list-note>
+						<blabla-notes-list-note></blabla-notes-list-note>
+						<blabla-notes-list-note></blabla-notes-list-note>
+					</blabla-notes-list>
+				</blabla-layout-drawer>
+			</div>
+			<div class="column">
+				<blabla-layout-module module="notes">
+					<blabla-notes-note editable>
+
+					</blabla-notes-note>
+				</blabla-layout-module>
+			</div>
+		</div>
 		<iron-pages selected="[[page]]" attr-for-selected="name" fallback-selection="view404" role="main">
 			<blabla-view-account-settings name="view-account-settings"></blabla-view-account-settings>
 			<blabla-view-account name="view-account"></blabla-view-account>
@@ -88,72 +103,72 @@
 		</iron-pages>
 	</template>
 
-    <script>
-        /**
-         * `blabla-app`
-         * The app container of Blabla App
-         *
-         * @customElement
-         * @polymer
-         */
-        class BlablaApp extends Polymer.Element {
-            static get is() {
-                return 'blabla-app';
-            }
-            static get properties() {
-                return {
-                    page: {
-                        type: String,
-                        reflectToAttribute: true,
-                        observer: '_pageChanged',
-                    },
-                    rootPattern: String,
-                    routeData: Object,
-                    subroute: String,
-                };
-            }
+	<script>
+		/**
+		 * `blabla-app`
+		 * The app container of Blabla App
+		 *
+		 * @customElement
+		 * @polymer
+		 */
+		class BlablaApp extends Polymer.Element {
+			static get is() {
+				return 'blabla-app';
+			}
+			static get properties() {
+				return {
+					page: {
+						type: String,
+						reflectToAttribute: true,
+						observer: '_pageChanged',
+					},
+					rootPattern: String,
+					routeData: Object,
+					subroute: String,
+				};
+			}
 
-            static get observers() {
-                return [
-                    '_routePageChanged(routeData.page)',
-                ];
-            }
+			static get observers() {
+				return [
+					'_routePageChanged(routeData.page)',
+				];
+			}
 
-            constructor() {
-                super();
+			constructor() {
+				super();
 
-                // Get root pattern for app-route, for more info about `rootPath` see:
-                // https://www.polymer-project.org/2.0/docs/upgrade#urls-in-templates
-                this.rootPattern = (new URL(this.rootPath)).pathname;
-            }
+				// Get root pattern for app-route, for more info about `rootPath` see:
+				// https://www.polymer-project.org/2.0/docs/upgrade#urls-in-templates
+				this.rootPattern = (new URL(this.rootPath)).pathname;
+			}
 
-            _routePageChanged(page) {
-                // Polymer 2.0 will call with `undefined` on initialization.
-                // Ignore until we are properly called with a string.
-                if (page === undefined) {
-                    return;
-                }
+			_routePageChanged(page) {
+				// Polymer 2.0 will call with `undefined` on initialization.
+				// Ignore until we are properly called with a string.
+				if (page === undefined) {
+					return;
+				}
 
-                // If no page was found in the route data, page will be an empty string.
-                // Deault to 'home' in that case.
-                this.page = page || 'home';
-            }
+				// If no page was found in the route data, page will be an empty string.
+				// Deault to 'home' in that case.
+				this.page = page || 'home';
+			}
 
-            _pageChanged(page) {
-                // Load page import on demand. Show 404 page if fails
-                var resolvedPageUrl = this.resolveUrl('blabla-view-' + page + '.html');
-                Polymer.importHref(
-                    resolvedPageUrl,
-                    null,
-                    this._showPage404.bind(this),
-                    true);
-            }
+			_pageChanged(page) {
+				// Load page import on demand. Show 404 page if fails
+				var resolvedPageUrl = this.resolveUrl('blabla-view-' + page + '.html');
+				Polymer.importHref(
+					resolvedPageUrl,
+					null,
+					this._showPage404.bind(this),
+					true);
+			}
 
-            _showPage404() {
-                this.page = '404';
-            }
-        }
+			_showPage404() {
+				this.page = '404';
+			}
+		}
 
-        window.customElements.define(BlablaApp.is, BlablaApp);
-    </script>
+		window.customElements.define(BlablaApp.is, BlablaApp);
+	</script>
 </dom-module>
