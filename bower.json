@@ -11,7 +11,8 @@
 		"app-route": "polymerelements/app-route#^2.0.0",
 		"app-storage": "polymerelements/app-storage#^2.0.0",
 		"iron-pages": "polymerelements/iron-pages#^2.0.0",
-		"iron-selector": "polymerelements/iron-selector#^2.0.0"
+		"iron-selector": "polymerelements/iron-selector#^2.0.0",
+		"fontawesome": "~4.7.0"
 	},
 	"devDependencies": {
 		"web-component-tester": "Polymer/web-component-tester#^6.0.0"
