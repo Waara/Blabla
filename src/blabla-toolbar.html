@@ -8,8 +8,8 @@
 				display: flex;
 				align-items: center;
 				min-height: 56px;
-				padding-left: 16px;
-				padding-right: 16px;
+				padding-left: 8px;
+				padding-right: 8px;
 			}
 			:host ::slotted([main-title]) {
 				font-size: 24px;
@@ -17,6 +17,10 @@
 			}
 			:host ::slotted(.divider) {
 				flex: 1;
+			}
+			:host ::slotted(*) {
+				padding-left: 8px;
+				padding-right: 8px;
 			}
 		</style>
 		<slot></slot>
