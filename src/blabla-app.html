@@ -56,8 +56,8 @@
 					<blabla-toolbar>
 						<blabla-button>
 							<img icon src="/images/manifest/icon-64x64.png" />
+							<div main-title>Blabla</div>
 						</blabla-button>
-						<div main-title>Blabla</div>
 						<div class="search-container">
 							<form>
 								<label class="sr-only">Search for notes</label>
@@ -65,7 +65,10 @@
 							</form>
 						</div>
 						<div class="divider"></div>
-						<blabla-button brand><blabla-icon icon="fa fa-plus"></blabla-icon> New note</blabla-button>
+						<blabla-button brand>
+							<blabla-icon button-icon icon="fa fa-plus"></blabla-icon>
+							<span button-text>New note</span>
+						</blabla-button>
 						<blabla-dropdown>
 							<blabla-button slot="toggle" title="Account">
 								<blabla-icon icon="fa fa-user" aria-hidden="true"></blabla-icon>

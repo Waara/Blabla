@@ -5,11 +5,12 @@
 	<template>
 		<style include="shared-styles">
 			:host {
-				height: 40px;
-				padding: 8px;
-				line-height: 24px;
-				font-size: 14px;
+				height: 32px;
+				padding: 0 8px;
+				font-size: 12px;
+				font-weight: 500;
 				text-align: center;
+				text-transform: uppercase;
 				-moz-user-select: none;
 				-ms-user-select: none;
 				-webkit-user-select: none;
@@ -18,9 +19,11 @@
 				background: transparent;
 				-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 				-webkit-tap-highlight-color: transparent;
-				display: inline-block;
 				white-space: nowrap;
 				border-radius: 4px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
 			}
 
 			:host([brand]) {
@@ -30,6 +33,11 @@
 
 			:host ::slotted([icon]) {
 				display: inline-block;
+			}
+
+			:host ::slotted(*) {
+				padding-left: 4px;
+				padding-right: 4px;
 			}
 
 			:host ::slotted(img) {
