@@ -6,8 +6,23 @@
 		<style include="shared-styles">
 			:host {
 				display: block;
+				padding-top: 40px;
+				position: relative;
+			}
+
+			:host .notes-list__header {
+				position: fixed;
+				width: 300px;
+				height: 40px;
+				left: 0;
+				top: 56px;
+				background: #fff;
+				border-bottom: 1px solid #eee;
 			}
 		</style>
+		<div class="notes-list__header">
+			<blabla-button><blabla-icon icon="fa fa-pencil-square-o"></blabla-icon> New note</blabla-button>
+		</div>
 		<slot></slot>
 	</template>
 
@@ -23,13 +38,10 @@
 			static get is() {
 				return 'blabla-notes-list';
 			}
-			static get properties() {
-				return {
-					prop1: {
-						type: String,
-						value: 'blabla-notes-list'
-					}
-				};
+			static get properties() {}
+			connectedCallback() {
+				super.connectedCallback();
+				this._ensureAttribute('role', 'list');
 			}
 		}
 
