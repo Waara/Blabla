@@ -2,8 +2,8 @@
 
 
 <link rel="import" href="blabla-toolbar.html">
-<link rel="import" href="blabla-drawer.html">
 <link rel="import" href="blabla-button.html">
+<link rel="import" href="blabla-layout-drawer.html">
 <link rel="import" href="blabla-layout-header.html">
 <link rel="import" href="blabla-dropdown.html">
 <link rel="import" href="blabla-menu.html">
@@ -40,6 +40,13 @@
 				border: 0;
 				padding: 8px;
 			}
+			:host .row {
+				display: flex;
+				width: 100%;
+			}
+			:host .row > .column {
+				flex: 1;
+			}
 		</style>
 		<app-location route="{{route}}"></app-location>
 		<app-route route="{{route}}" pattern="[[rootPattern]]:page" data="{{routeData}}" tail="{{subroute}}"></app-route>
@@ -73,17 +80,30 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="column">
-				<blabla-layout-drawer>
-					<blabla-button>Create new note</blabla-button>
-					<blabla-notes-list>
-						<blabla-notes-list-note heading="jekke" lead="Lorem ipsum"></blabla-notes-list-note>
-						<blabla-notes-list-note></blabla-notes-list-note>
-						<blabla-notes-list-note></blabla-notes-list-note>
-						<blabla-notes-list-note></blabla-notes-list-note>
-					</blabla-notes-list>
-				</blabla-layout-drawer>
-			</div>
+			<blabla-layout-drawer>
+				<blabla-notes-list>
+					<blabla-notes-list-note heading="Lorem ipsum dolor sit amet" lead="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed posuere interdum sem..."></blabla-notes-list-note>
+					<blabla-notes-list-note heading='Palasin juuri "Playboy-koekuvauksista"' lead="Palasin juuri uudesta koulustani, sain tänään tietää, että minun ei tarvitse osallistua..."></blabla-notes-list-note>
+					<blabla-notes-list-note heading="Ote ensimmäisestä runosta" lead="Mieleni minun tekevi, aivoni ajattelevi lähteäni laulamahan, saa'ani sanelemahan..."></blabla-notes-list-note>
+					<blabla-notes-list-note heading="Ensimmäinen luku" lead="Jukolan talo, eteläisessä Hämeessä, seisoo erään mäen pohjoisella rinteellä, liki..."></blabla-notes-list-note>
+					<blabla-notes-list-note heading="Lorem ipsum dolor sit amet" lead="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed posuere interdum sem..."></blabla-notes-list-note>
+					<blabla-notes-list-note heading='Palasin juuri "Playboy-koekuvauksista"' lead="Palasin juuri uudesta koulustani, sain tänään tietää, että minun ei tarvitse osallistua..."></blabla-notes-list-note>
+					<blabla-notes-list-note heading="Ote ensimmäisestä runosta" lead="Mieleni minun tekevi, aivoni ajattelevi lähteäni laulamahan, saa'ani sanelemahan..."></blabla-notes-list-note>
+					<blabla-notes-list-note heading="Ensimmäinen luku" lead="Jukolan talo, eteläisessä Hämeessä, seisoo erään mäen pohjoisella rinteellä, liki..."></blabla-notes-list-note>
+					<blabla-notes-list-note heading="Lorem ipsum dolor sit amet" lead="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed posuere interdum sem..."></blabla-notes-list-note>
+					<blabla-notes-list-note heading='Palasin juuri "Playboy-koekuvauksista"' lead="Palasin juuri uudesta koulustani, sain tänään tietää, että minun ei tarvitse osallistua..."></blabla-notes-list-note>
+					<blabla-notes-list-note heading="Ote ensimmäisestä runosta" lead="Mieleni minun tekevi, aivoni ajattelevi lähteäni laulamahan, saa'ani sanelemahan..."></blabla-notes-list-note>
+					<blabla-notes-list-note heading="Ensimmäinen luku" lead="Jukolan talo, eteläisessä Hämeessä, seisoo erään mäen pohjoisella rinteellä, liki..."></blabla-notes-list-note>
+					<blabla-notes-list-note heading="Lorem ipsum dolor sit amet" lead="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed posuere interdum sem..."></blabla-notes-list-note>
+					<blabla-notes-list-note heading='Palasin juuri "Playboy-koekuvauksista"' lead="Palasin juuri uudesta koulustani, sain tänään tietää, että minun ei tarvitse osallistua..."></blabla-notes-list-note>
+					<blabla-notes-list-note heading="Ote ensimmäisestä runosta" lead="Mieleni minun tekevi, aivoni ajattelevi lähteäni laulamahan, saa'ani sanelemahan..."></blabla-notes-list-note>
+					<blabla-notes-list-note heading="Ensimmäinen luku" lead="Jukolan talo, eteläisessä Hämeessä, seisoo erään mäen pohjoisella rinteellä, liki..."></blabla-notes-list-note>
+					<blabla-notes-list-note heading="Lorem ipsum dolor sit amet" lead="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed posuere interdum sem..."></blabla-notes-list-note>
+					<blabla-notes-list-note heading='Palasin juuri "Playboy-koekuvauksista"' lead="Palasin juuri uudesta koulustani, sain tänään tietää, että minun ei tarvitse osallistua..."></blabla-notes-list-note>
+					<blabla-notes-list-note heading="Ote ensimmäisestä runosta" lead="Mieleni minun tekevi, aivoni ajattelevi lähteäni laulamahan, saa'ani sanelemahan..."></blabla-notes-list-note>
+					<blabla-notes-list-note heading="Ensimmäinen luku" lead="Jukolan talo, eteläisessä Hämeessä, seisoo erään mäen pohjoisella rinteellä, liki..."></blabla-notes-list-note>
+				</blabla-notes-list>
+			</blabla-layout-drawer>
 			<div class="column">
 				<blabla-layout-module module="notes">
 					<blabla-notes-note editable>

@@ -1,0 +1,35 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="blabla-layout-drawer">
+	<template>
+		<style include="shared-styles">
+			:host {
+				display: block;
+				background: #fff;
+				max-width: 300px;
+				flex: 1;
+				height: calc(100vh - 56px);
+				overflow-y: auto;
+				overflow-x: hidden;
+			}
+		</style>
+		<slot></slot>
+	</template>
+
+	<script>
+		/**
+		 * `blabla-layout-drawer`
+		 *
+		 * @customElement
+		 * @polymer
+		 */
+		class BlablaLayoutDrawer extends Polymer.Element {
+			static get is() {
+				return 'blabla-layout-drawer';
+			}
+		}
+
+		window.customElements.define(BlablaLayoutDrawer.is, BlablaLayoutDrawer);
+	</script>
+</dom-module>
