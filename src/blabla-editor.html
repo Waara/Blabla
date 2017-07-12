@@ -1,0 +1,164 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="blabla-editor">
+	<link rel="import" type="css" href="../bower_components/fontawesome/css/font-awesome.min.css">
+	<template>
+		<style include="shared-styles">
+			:host {
+				display: block;
+				padding: 16px 32px;
+				margin: 16px;
+				background: #fff;
+				box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+			}
+
+			:host .editor-content * {
+				position: relative;
+			}
+
+			:host .editor-content:focus {
+				outline: 0;
+			}
+
+			h1::before,
+			h2::before,
+			h3::before,
+			h4::before,
+			h5::before {
+				color: #bbb;
+				font-size: 16px;
+				font-weight: 300;
+				margin-right: 5px;
+				position: absolute;
+				left: -24px;
+				top: calc(50% - 10px);
+			}
+
+			i::before,
+			i::before,
+			em::before,
+			em::after {
+				content: "*";
+				color: #bbb;
+				display: inline-block;
+			}
+
+			strong::before,
+			strong::before,
+			b::before,
+			b::after {
+				content: "**";
+				color: #bbb;
+				display: inline-block;
+			}
+			
+			del::before,
+			del::before,
+			s::before,
+			s::after {
+				content: "~~";
+				color: #bbb;
+				text-decoration: none;
+				display: inline-block;
+			}
+
+			u::before,
+			u::after {
+				content: "~";
+				color: #bbb;
+				text-decoration: none;
+				display: inline-block;
+			}
+
+			code {
+				background: #f5f5f5;
+				padding: 2px 4px;
+				border-radius: 4px;
+			}
+
+			code::before,
+			code::after {
+				content: "`";
+				color: #bbb;
+				text-decoration: none;
+				display: inline-block;
+			}
+
+			h1::before {
+				content: "h1";
+			}
+			h2::before {
+				content: "h2";
+			}
+			h3::before {
+				content: "h3";
+			}
+			h4::before {
+				content: "h4";
+			}
+			h5::before {
+				content: "h5";
+			}
+
+			h1:focus::before {
+				color: #888;
+			}
+		</style>
+		<div class="editor-content" contenteditable="true">
+			<h1>Sample Note: This is the title</h1>
+			<p>The way <code>blabla-editor</code> works is that it transforms the written Markdown-text straight to HTML.</p>
+			<p>Blabla-editor lets you quickly type out notes, memos or whatever needs to be written down while using <b>bold text</b>, <em>italic text</em>, <s>strikethroughs</s>, <u>underlines</u> and many other features in it.</p> 
+			<h2>This is a subtitle</h2>
+			<h3>This is even a subber title</h3>
+		</div>
+	</template>
+
+	<script>
+		/**
+		 * `blabla-editor`
+		 *
+		 * @customElement
+		 * @polymer
+		 */
+		class BlablaEditor extends Polymer.Element {
+			static get is() {
+				return 'blabla-editor';
+			}
+			static get properties() {
+				return {
+					note: String
+				};
+			}
+			constructor() {
+				super();
+			}
+			connectedCallback() {
+				super.connectedCallback();
+				const editor = this;
+				const container = editor.shadowRoot.querySelector('.editor-content');
+				const innertext = container.innerText;
+				const textcontent = container.textContent;
+
+				console.log("container",container);
+				console.log("innertext",innertext);
+				console.log("textcontent",textcontent);
+				
+				editor.addEventListener('keypress', function (e) {
+					if (e.keyCode === 13) {
+						document.execCommand('formatBlock', false, 'p');
+						return false;
+					}
+					console.log("innertext",editor.innerText);
+				});
+				editor.addEventListener('selectionchange', function (e) {
+					console.log("selectionchange",e);
+				});
+				editor.addEventListener('selectstart', function (e) {
+					console.log("select",e);
+				});
+			}
+		}
+		window.customElements.define(BlablaEditor.is, BlablaEditor);
+	</script>
+</dom-module>

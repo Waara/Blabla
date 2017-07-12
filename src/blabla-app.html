@@ -1,6 +1,7 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 
 
+<link rel="import" href="blabla-editor.html">
 <link rel="import" href="blabla-toolbar.html">
 <link rel="import" href="blabla-button.html">
 <link rel="import" href="blabla-layout-drawer.html">
@@ -32,6 +33,7 @@
 				display: block;
 				background: #f5f5f5;
 				min-height: 100vh;
+				box-sizing: border-box;
 			}
 			:host .search-container {
 				padding: 0 16px;
@@ -109,11 +111,7 @@
 				</blabla-notes-list>
 			</blabla-layout-drawer>
 			<div class="column">
-				<blabla-layout-module module="notes">
-					<blabla-notes-note editable>
-
-					</blabla-notes-note>
-				</blabla-layout-module>
+				<blabla-editor></blabla-editor>
 			</div>
 		</div>
 		<iron-pages selected="[[page]]" attr-for-selected="name" fallback-selection="view404" role="main">
