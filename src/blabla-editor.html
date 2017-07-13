@@ -1,8 +1,8 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="shared-styles.html">
+<link rel="import" href="blabla-codemirror.html">
 
 <dom-module id="blabla-editor">
-	<link rel="import" type="css" href="../bower_components/fontawesome/css/font-awesome.min.css">
 	<template>
 		<style include="shared-styles">
 			:host {
@@ -105,14 +105,7 @@
 				color: #888;
 			}
 		</style>
-		<div class="editor-content" contenteditable="true">
-			<h1># Sample Note: This is the title</h1>
-			<p>The way <code>blabla-editor</code> works is that it transforms the written Markdown-text straight to HTML.</p>
-			<p>Blabla-editor lets you quickly type out notes, memos or whatever needs to be written down while using <b>bold text</b>, <em>italic text</em>, <s>strikethroughs</s>, <u>underlines</u> and many other features in it.</p> 
-			<h2>## This is a subtitle</h2>
-			<h3>### This is even a subber title</h3>
-			<h4>#### This is the subbest title</h4>
-		</div>
+		<blabla-codemirror></blabla-codemirror>
 	</template>
 
 	<script>
@@ -136,28 +129,6 @@
 			}
 			connectedCallback() {
 				super.connectedCallback();
-				const editor = this;
-				const container = editor.shadowRoot.querySelector('.editor-content');
-				const innertext = container.innerText;
-				const textcontent = container.textContent;
-
-				console.log("container",container);
-				console.log("innertext",innertext);
-				console.log("textcontent",textcontent);
-				
-				editor.addEventListener('keypress', function (e) {
-					if (e.keyCode === 13) {
-						document.execCommand('formatBlock', false, 'p');
-						return false;
-					}
-					console.log("innertext",editor.innerText);
-				});
-				editor.addEventListener('selectionchange', function (e) {
-					console.log("selectionchange",e);
-				});
-				editor.addEventListener('selectstart', function (e) {
-					console.log("select",e);
-				});
 			}
 		}
 		window.customElements.define(BlablaEditor.is, BlablaEditor);
