@@ -1,0 +1,118 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+<link rel="import" href="blabla-codemirror-scripts.html">
+
+
+<dom-module id="blabla-codemirror">
+	<link rel="import" type="css" href="../bower_components/codemirror/lib/codemirror.css">	
+	<template>
+		<style>
+			:host {
+				display: block;
+				box-sizing: border-box;
+			}
+			.CodeMirror,
+			.CodeMirror pre {
+				color: #333 !important;
+				font-weight: normal !important;
+				font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important;
+			}
+			.cm-s-default
+			.cm-header {
+				color: #333 !important;
+				font-weight: 300 !important;
+			}
+			.cm-header-1 {
+				font-size: 36px;
+			}
+			.cm-header-2 {
+				font-size: 30px;
+			}
+			.cm-header-3 {
+				font-size: 24px;
+			}
+			.cm-header-4 {
+				font-size: 18px;
+			}
+			.cm-header-5 {
+				font-size: 14px;
+			}
+			.cm-header-6 {
+				font-size: 12px;
+			}
+		</style>
+		<div id="cm"></div>
+	</template>
+
+	<script>
+		/**
+		 * `blabla-codemirror`
+		 *
+		 * @customElement
+		 * @polymer
+		 */
+		class BlablaCodeMirror extends Polymer.Element {
+			static get is() {
+				return 'blabla-codemirror';
+			}
+			static get properties() {
+				return {
+					icon: String,
+					value: {
+						type: String,
+						value: ''
+					},
+					mode: {
+						type: String,
+						value: 'gfm'
+					},
+					lineNumbers: {
+						type: Boolean,
+						value: false
+					}
+				}
+			}
+			attachEvents() {
+				var editor = this;
+				editor.mirror.on('change', function (e) {
+					editor.fire('change');
+					editor.value = e.getValue();
+				});
+				editor.mirror.on('keydown', function (e) {
+					editor.fire('change');
+				});
+				editor.mirror.on('keyup', function (e) {
+					editor.fire('change');
+				});
+				editor.mirror.on('keypress', function (e) {
+					editor.fire('change');
+				});
+			}
+			connectedCallback() {
+				super.connectedCallback();
+
+				const editor = this;
+
+				editor.mirror = CodeMirror(editor.shadowRoot.querySelector('#cm'), {
+					value: editor.value,
+					mode: editor.mode,
+					lineNumbers: editor.lineNumbers,
+					placeholder: "Write here",
+					lineWrapping: true
+				});
+
+				var totalLines = editor.mirror.lineCount();
+
+				//editor.attachEvents();
+
+				editor.mirror.refresh();
+				editor.focus();
+			}
+			focus() {
+				this.mirror.focus();
+			}
+		}
+
+		window.customElements.define(BlablaCodeMirror.is, BlablaCodeMirror);
+	</script>
+</dom-module>
